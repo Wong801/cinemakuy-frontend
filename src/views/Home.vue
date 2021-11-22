@@ -1,18 +1,17 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <Movies :text="true" />
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import { defineAsyncComponent } from "@vue/runtime-core";
+const Movies = defineAsyncComponent(() => import("@/components/Movies.vue"));
 
 export default {
-  name: "Home",
   components: {
-    HelloWorld,
+    Movies,
+  },
+  created() {
+    this.$store.commit("setSearchTitle", "");
   },
 };
 </script>
